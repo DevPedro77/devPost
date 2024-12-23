@@ -9,6 +9,9 @@ function AuthRoutes(){
       <Stack.Screen
         name="Login"
         component={Login}
+        options={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );

@@ -9,12 +9,15 @@ function Routes(){
   const loading = false;
 
   if(loading){
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ccc'}}>
+    return(
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000'}}>
       <ActivityIndicator
         size={50}
-        color={'#e52246'}
+        color={'#fff'}
       />
-    </View>;
+    </View>
+    );
+
   }
   return(
     signed ? <AppRoutes/> : <AuthRoutes/>
