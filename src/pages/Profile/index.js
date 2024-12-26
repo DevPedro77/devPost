@@ -1,10 +1,21 @@
-import React from 'react';
-import {View ,Text} from 'react-native';
+import React, {useContext} from 'react';
+import {View ,Text, Button} from 'react-native';
+
+import { AuthContext } from '../../contexts/auth';
 
 function Profile(){
+  const { signOut} = useContext(AuthContext);
+
+    async function handleSignOut() {
+      signOut();
+    }
   return(
     <View>
-      <Text>TELA HOME</Text>
+      <Text>TELA Perfil</Text>
+      <Button
+        title="Sair"
+        onPress={handleSignOut}
+      />
     </View>
   );
 }
