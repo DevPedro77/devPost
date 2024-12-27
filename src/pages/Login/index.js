@@ -58,7 +58,7 @@ function Login() {
           onChangeText={(text) => setPassword(text)}
           placeholder="Password"
           placeholderTextColor="#aaa"
-          secureTextEntry
+          secureTextEntry={true}
         />
 
         <Button onPress={handleSignIn}>

@@ -4,7 +4,7 @@ import {View ,Text} from 'react-native';
 function Search(){
   return(
     <View>
-      <Text>TELA HOME</Text>
+      <Text>TELA Buscasr</Text>
     </View>
   );
 }
