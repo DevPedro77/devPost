@@ -43,7 +43,7 @@ function Login() {
   if (login) {
     return (
       <Container>
-        <MaterialCommunityIcons name="account-lock" size={70} color="#000" />
+        <MaterialCommunityIcons name="account-circle" size={70} color="#000" />
         <Title>Welcome Back</Title>
 
         <Input
@@ -78,7 +78,7 @@ function Login() {
 
   return (
     <Container>
-      <MaterialCommunityIcons name="incognito" size={60} color="#000" />
+      <MaterialCommunityIcons name="account-circle" size={70} color="#000" />
       <Title>Create an Account</Title>
 
       <Input
@@ -101,7 +101,7 @@ function Login() {
         onChangeText={(text) => setPassword(text)}
         placeholder="Password"
         placeholderTextColor="#aaa"
-        secureTextEntry
+        secureTextEntry={true}
       />
 
       <Button onPress={handleSignUp}>

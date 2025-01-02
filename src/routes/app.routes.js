@@ -23,7 +23,7 @@ function StackRoutes(){
       />
 
       <Stack.Screen
-        name="New Post"
+        name="NewPost"
         component={NewPost}
         options={{
           title: 'Novo post',

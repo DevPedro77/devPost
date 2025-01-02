@@ -12,7 +12,7 @@ export const Title = styled.Text`
   font-size: 24px;
   font-weight: bold;
   color: #000;
-  margin: 16px;
+  margin-bottom: 8px;
 `;
 
 export const Input = styled.TextInput`
@@ -21,7 +21,6 @@ export const Input = styled.TextInput`
   background-color: #f0f0f0;
   border-radius: 8px;
   margin-bottom: 15px;
-  padding: 0 15px;
   font-size: 16px;
   color: #000;
 `;
