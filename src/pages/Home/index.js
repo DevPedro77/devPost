@@ -22,6 +22,7 @@ function Home(){
       function featchPost(){
         firestore().collection('posts')
         .orderBy('created', 'desc')
+        .limit(6)
         .get()
         .then((snapshot) =>{
           if(isActive){
