@@ -1,5 +1,5 @@
 import React, {useState, useContext, useCallback} from 'react';
-import {View ,Text, ActivityIndicator} from 'react-native';
+import {View ,Text, ActivityIndicator, Alert} from 'react-native';
 import { useNavigation, useFocusEffect} from '@react-navigation/native';
 import {Container, ButtonPost, ListPost} from './styles';
 import firestore, { orderBy } from '@react-native-firebase/firestore';
@@ -15,6 +15,10 @@ function Home(){
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [loadingRefresh, setLoadingRefresh] = useState(false); // refresh do app
+  const [lastItem, setLastItem] = useState(''); // ultimo post
+  const [emptyList, setEmptyList] = useState(false); // lista vazia
+
   useFocusEffect(
     useCallback( () => {
       let isActive = true;
@@ -22,7 +26,7 @@ function Home(){
       function featchPost(){
         firestore().collection('posts')
         .orderBy('created', 'desc')
-        .limit(6)
+        .limit(5)
         .get()
         .then((snapshot) =>{
           if(isActive){
@@ -35,7 +39,9 @@ function Home(){
               });
             });
 
+            setEmptyList(!!snapshot.empty);
             setPosts(postList);
+            setLastItem(snapshot.docs[snapshot.docs.length - 1]); // aqui tem o ultimo post da flatlist
             setLoading(false);
           }
         });
@@ -48,6 +54,33 @@ function Home(){
       };
     },[])
   );
+async function handleRefreshPost(){
+  setLoadingRefresh(true);
+
+  firestore().collection('posts')
+  .orderBy('created', 'desc')
+  .limit(5)
+  .get()
+  .then((snapshot) =>{
+    setPosts([]);
+    const postList = [];
+
+    snapshot.docs.map( u => {
+      postList.push({
+        ...u.data(),
+        id: u.id,
+      });
+    });
+
+    setEmptyList(false);
+    setPosts(postList);
+    setLastItem(snapshot.docs[snapshot.docs.length - 1 ]);
+    setLoading(false);
+  });
+
+  setLoadingRefresh(false);
+}
+
   return(
     <Container>
       <Header/>
@@ -66,6 +99,9 @@ function Home(){
           userId = {user?.uid}
         />
       )}
+
+      refreshing={loadingRefresh}
+      onRefresh={handleRefreshPost}
     />
     )}
 
