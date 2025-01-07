@@ -39,9 +39,8 @@ useFocusEffect(
       });
 
       if(isActive) {
-        console.log(postList);
-        setLoading(false);
         setPosts(postList);
+        setLoading(false);
       }
     });
 
