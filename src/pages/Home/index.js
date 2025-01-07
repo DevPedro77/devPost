@@ -54,6 +54,7 @@ function Home(){
       };
     },[])
   );
+  // Fazendo o refresh do Feed, buscando alteração no banco de dados
 async function handleRefreshPost(){
   setLoadingRefresh(true);
 
@@ -80,6 +81,32 @@ async function handleRefreshPost(){
 
   setLoadingRefresh(false);
 }
+//Buscar mais post ao chegar no final da lista
+async function getListPost() {
+  if(emptyList){
+    setLoading(false);
+    return null;
+  }
+
+  firestore().collection('posts')
+  .orderBy('created', 'desc')
+  .limit(5)
+  .startAfter( lastItem)
+  .get()
+  .then((snapshot) =>{
+    const postList = [];
+    snapshot.docs.map( u =>{
+      postList.push({
+        ...u.data(),
+        id: u.id,
+      });
+    });
+    setEmptyList(!!snapshot.empty);
+    setLastItem(snapshot.docs[snapshot.docs.length - 1]);
+    setPosts( oldPost => [...oldPost, ...postList]);
+    setLoading(false);
+  });
+}
 
   return(
     <Container>
@@ -102,6 +129,9 @@ async function handleRefreshPost(){
 
       refreshing={loadingRefresh}
       onRefresh={handleRefreshPost}
+
+      onEndReached={() =>getListPost()}
+      onEndReachedThreshold={0.1}
     />
     )}
 
