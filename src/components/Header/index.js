@@ -12,7 +12,7 @@ function Header() {
   return (
     <Container>
       <IconWrapper>
-        <Icon name="x-twitter" size={24} color="#fff" />
+        <Icon name="eye" size={24} color="#fff" />
       </IconWrapper>
       <LogoutButton onPress={onLogout}>
         <Icon name="arrow-right-from-bracket" size={20} color="#FFF" />

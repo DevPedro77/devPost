@@ -1,15 +1,16 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
-  background-color: #000;
+  background-color:rgb(0, 0, 0);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 3% 5%; /* Padding em porcentagem */
+  padding: 4% 5%; 
 `;
 
 export const IconWrapper = styled.View`
-  padding-right: 3%; /* Espaço proporcional */
+  padding-left: 3%; 
+
 `;
 
 export const LogoutButton = styled.TouchableOpacity`

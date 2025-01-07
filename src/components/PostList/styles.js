@@ -6,7 +6,6 @@ export const Container = styled.View`
   background-color: rgba(0, 0, 0, 0.6); /* Fundo levemente transparente */
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8); /* Sombra para destacar */
 `;
 
 export const Header = styled.TouchableOpacity`
@@ -32,7 +31,7 @@ export const ContentView = styled.View`
 `;
 export const Content = styled.Text`
   color: #fff;
-  margin: 4px 0;
+  margin: 4px;
 `;
 
 export const Actions = styled.View`
