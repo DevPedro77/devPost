@@ -13,6 +13,7 @@ import {
   TimePost,
 } from './styles';
 import firestore  from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { formatDate, formatDistance } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -20,6 +21,7 @@ import { ptBR } from 'date-fns/locale';
 
 function PostList({data, userId}) {
   const[likePost, setLikePost] = useState(data?.likes);
+  const navigation = useNavigation();
 
 function formatTimePost(){
   //console.log(new Date(data.created.seconds * 1000));
@@ -76,7 +78,7 @@ async function handleLikePost(id, likes){
 
   return (
     <Container>
-      <Header>
+      <Header onPress={() => navigation.navigate('PostUser', {title: data?.autor, userId: data?.userId})}>
         <Avatar
           source={require('../../assets/avatar.png')}
         />
