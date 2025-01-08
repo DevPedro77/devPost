@@ -1,23 +1,62 @@
-import React, {useContext} from 'react';
-import {View ,Text, Button} from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text } from 'react-native';
 
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/auth'
+import Header from '../../components/Header'
+import {
+  Container,
+  ContainerItems,
+  Name,
+  Email,
+  Button,
+  ButtonText,
+  UploadButton,
+  UploadText,
+  Avatar
+} from './styles'
 
 function Profile(){
-  const { signOut} = useContext(AuthContext);
+  const { signOut, user } = useContext(AuthContext);
 
-    async function handleSignOut() {
-      signOut();
-    }
+  const [nome, setNome] = useState(user?.nome)
+  const [url, setUrl] = useState(null);
+
+  async function handleSignOut(){
+    await signOut();
+  }
+
   return(
-    <View>
-      <Text>TELA Perfil</Text>
-      <Button
-        title="Sair"
-        onPress={handleSignOut}
-      />
-    </View>
-  );
+    <Container>
+      <Header/> 
+    <ContainerItems>
+      
+      { url ? (
+        <UploadButton onPress={ () => alert("CLICOU 1") }>
+          <UploadText>+</UploadText>
+          <Avatar
+            source={{ uri: url }}
+          />
+        </UploadButton>
+      ) : (
+        <UploadButton onPress={ () => alert("CLICOU 2") }>
+          <UploadText>+</UploadText>
+        </UploadButton>
+      )}
+
+      <Name>{user?.nome}</Name>
+      <Email>{user?.email}</Email>
+
+      <Button bg="#428cfd">
+        <ButtonText color="#FFF">Atualizar Perfil</ButtonText>
+      </Button>
+
+      <Button bg="#ddd" onPress={ handleSignOut }>
+        <ButtonText color="#353840">Sair</ButtonText>
+      </Button>
+    </ContainerItems>
+
+    </Container>
+  )
 }
 
 export default Profile;
