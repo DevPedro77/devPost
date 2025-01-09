@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex:1;
@@ -43,14 +43,14 @@ export const ButtonText = styled.Text`
 `;
 
 export const UploadButton = styled.TouchableOpacity`
- margin-top: 20%;
- background-color: #FFF;
- width: 165px;
- height: 165px;
- border-radius: 90px; 
- justify-content: center;
- align-items: center;
- z-index: 8;
+  margin-top: 20%;
+  background-color: #FFF;
+  width: 165px;
+  height: 165px;
+  border-radius: 90px; 
+  justify-content: center;
+  align-items: center;
+  z-index: 8;
 `;
 
 export const UploadText = styled.Text`
@@ -66,3 +66,31 @@ export const Avatar = styled.Image`
   height: 160px;
   border-radius: 80px;
 `;
+export const ModalContainer = styled.KeyboardAvoidingView`
+  width: 100%;
+  height: 70%;
+  background-color: #fff;
+  position: absolute;
+  bottom:0;
+  align-items: center;
+  justify-content: center;
+`;
+export const ButtonBack = styled.TouchableOpacity`
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  flex-direction: row;
+  align-items: center;
+`;
+export const Input = styled.TextInput`
+  background-color: #ddd;
+  width: 80%;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 18px;
+  color: #121212;
+  text-align: center;
+`;
+
+
+
