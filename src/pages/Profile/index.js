@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, Modal, Platform } from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 import { AuthContext } from '../../contexts/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -48,7 +49,7 @@ function Profile(){
     .where('userId', '==', user?.uid).get();
 
   // Percorrer e atualizar os autores dos posts
-  for (const doc of postDocs.docs) { // Usando "for...of" para iterar 
+  for (const doc of postDocs.docs) { // Usando "for...of" para iterar
     await firestore().collection('posts').doc(doc.id).update({
       autor: nome,
     });
@@ -66,6 +67,23 @@ function Profile(){
   setOpen(false);
 }
 
+const uploadFile = () => {
+  const options = {
+    noData: true,
+    mediaType: 'photo',
+
+  };
+  launchImageLibrary( options, response => {
+    if(response.didCancel){
+      console.log('cancelou');
+    }else if(response.error){
+      console.log('Ops, deu algum erro');
+    }else {
+      console.log('enviar ao cloudyfire')
+    }
+  });
+};
+
 
   return(
     <Container>
@@ -80,7 +98,7 @@ function Profile(){
           />
         </UploadButton>
       ) : (
-        <UploadButton onPress={ () => alert('CLICOU 2') }>
+        <UploadButton onPress={ () => uploadFile() }>
           <UploadText>+</UploadText>
         </UploadButton>
       )}
